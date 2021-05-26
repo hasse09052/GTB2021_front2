@@ -1,0 +1,18 @@
+.bg {
+    min-height: calc(100vh - 112px);
+    background: #F6F4EF;
+    @media only screen and (max-width: 767px) {
+        min-height: calc(100vh - 60px);
+    }
+}
+
+.container {
+    width: 640px;
+    padding: 48px 0;
+    margin: 0 auto;
+    @media only screen and (max-width: 767px) {
+        width: 100%;
+        padding: 24px;
+    }
+}
+
