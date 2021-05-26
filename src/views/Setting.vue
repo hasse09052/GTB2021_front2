@@ -6,7 +6,7 @@
     <div class="bg">
       <main class="container">
         <form class="settingForm">
-          <h1 class="settingForm__title">設定{{token}}</h1>
+          <h1 class="settingForm__title">設定</h1>
           <div class="settingForm__block">
             <h2 class="settingForm__subTitle">天気の取得場所</h2>
             <p class="settingForm__text">天気に合わせて変化する持ち物を特定するのに使います。（文章変える）</p>
@@ -73,6 +73,7 @@
         </form>
       </main>
     </div>
+    <Loading v-if="loading"/>
   </div>
 </template>
 
@@ -84,8 +85,8 @@ export default {
   data() {
     return {
       region: "沖縄",
-      //token: this.$route.query.token,
-      token: "Sfg4oSjgrDgVk6WO6FlNDf2ftIOOyQ",
+      token: this.$route.query.token,
+      loading: false,
     }
   },
   methods: {
@@ -104,6 +105,7 @@ export default {
           this.$router.push({name: 'App', params: {name: name, image: image, token: token}})
         });
       */
+      this.loading = true;
       axios
         .post(
           'http://118.27.2.127/api/user/region/' + this.region, {}, {

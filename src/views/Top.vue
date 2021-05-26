@@ -48,6 +48,9 @@ export default {
     &:hover {
       cursor: pointer;
     }
+    @media only screen and (max-width: 767px) {
+      font-size: 16px;
+    }
   }
 }
 

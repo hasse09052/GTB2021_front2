@@ -1,5 +1,5 @@
 <template>
-  <div class="list">
+  <div class="applist">
     <Header v-bind:name="this.$store.state.user_name" v-bind:image="this.$store.state.image_url"/>
     <div class="bg">
       <main class="container">

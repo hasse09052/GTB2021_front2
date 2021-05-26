@@ -564,3 +564,7 @@ textarea,
   clip: rect(0, 0, 0, 0);
   position: absolute;
 }
+
+img {
+  max-width:100%;
+}
