@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <Header v-bind:name="name" v-bind:image="image"/>
+  <div class="list">
+    <Header v-bind:name="this.$store.state.user_name" v-bind:image="this.$store.state.image_url"/>
     <div class="bg">
       <main class="container">
         <div class="searchWrap">
@@ -12,6 +12,9 @@
           <Card title="日焼け止め"/>
           <Card title="スマホ"/>
         </ul>
+
+        <p>{{this.$store.state.token}}</p>
+
       </main>
     </div>
   </div>
@@ -28,11 +31,6 @@ export default {
     return {
       loading: false,
     }
-  },
-  props: {
-    name: String,
-    image: String,
-    token: String
   },
   components: {
     Header,

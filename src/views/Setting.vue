@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="setting">
     <header class="header">
       <router-link to="/app" class="header__button">閉じる</router-link>
     </header>
@@ -112,10 +112,14 @@ export default {
           },
         })
         .then(response => {
-          const name = response.data.user_name;
-          const image = response.data.avatar_url;
           const token = response.data.api_token;
-          this.$router.push({name: 'App', params: {name: name, image: image, token: token}})
+          const name = response.data.user_name;
+          const url = response.data.avatar_url;
+          this.$store.commit('setToken', token);
+          this.$store.commit('setName', name);
+          this.$store.commit('setImageUrl', url);
+          this.$router.push('app')
+          //this.$router.push({name: 'App', params: {name: name, image: image, token: token}})
         });
     }
   },
