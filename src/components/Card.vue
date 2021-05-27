@@ -4,9 +4,13 @@
       <p class="card__title" v-bind:class="{'-check': isCheck}">{{title}}</p>
     </div>
     <div class="card__footer">
-      <p class="card__optionTitle -green">天気で通知</p>
-      <p class="card__optionTitle -purple">毎日通知</p>
-      <p class="card__optionText">紫外線が多い日に通知します</p>
+      <template v-if="type === 0">
+        <p class="card__optionTitle -purple">毎日通知</p>
+        <p class="card__optionText">紫外線が多い日に通知します</p>
+      </template>
+      <template v-if="type === 1">
+        <p class="card__optionTitle -green">天気で通知</p>
+      </template>
     </div>
   </li>
 </template>
@@ -20,10 +24,17 @@ export default {
   },
   props: {
     title: String,
+    type: Number,
+    check: Number,
   },
   methods: {
     toggleCheck: function() {
       this.isCheck = !this.isCheck
+    }
+  },
+  created: function() {
+    if (this.check === 1) {
+      this.isCheck = true
     }
   }
 }

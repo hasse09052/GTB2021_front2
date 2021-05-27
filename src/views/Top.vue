@@ -25,7 +25,7 @@ export default {
     login: function() {
       this.loading = true;
       axios
-        .get('http://160.251.43.28/api/login')
+        .get('http://118.27.2.127/api/login')
         .then(response => {
           location.href = response.data;
         });
