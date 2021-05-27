@@ -4,8 +4,13 @@
       <button @click="login" class="header__button">Googleでログイン</button>
     </header>
     <div class="bg">
-      <figure class="logoWrap"><img src="../assets/img_logo.png" alt=""></figure>
-      <h1 class="catchphrase">朝の準備を<br>かんたんに、正確に</h1>
+      <div class="eyecatch">
+        <img src="../assets/img_bg.png" alt="">
+        <figure class="logoWrap">
+          <img src="../assets/img_logo.png" alt="">
+          <h1 class="catchphrase">朝の準備を<br>かんたんに、正確に</h1>
+        </figure>
+      </div>
 
       <img class="separator" src="../assets/img_separator.png" alt="">
       <div class="features">
@@ -66,12 +71,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.bg {
-  @media only screen and (max-width: 767px) {
-    padding-bottom: 60px;
-  }
-}
-
 .header {
   justify-content: flex-end;
   &__button {
@@ -94,17 +93,44 @@ export default {
   }
 }
 
-.logoWrap {
-  margin: 0;
+.bg {
+  @media only screen and (max-width: 767px) {
+    padding-bottom: 60px;
+  }
+}
+
+.eyecatch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1200px;
+  margin: 0 auto;
+  padding-top: 40px;
+  @media only screen and (max-width: 767px) {
+    width: 320px;
+    flex-direction: column-reverse;
+  }
+
   img {
-    display: block;
-    margin: 0 auto;
-    padding-top: 40px;
-    width: 280px;
+    width: 650px;
     @media only screen and (max-width: 767px) {
-      width: 120px;
+      width: 240px;
     }
-    
+  }
+  .logoWrap {
+    margin: 0;
+    width: 560px;
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 280px;
+      @media only screen and (max-width: 767px) {
+        width: 120px;
+      }
+    }
+    @media only screen and (max-width: 767px) {
+      width: 240px;
+    }
   }
 }
 
@@ -141,7 +167,7 @@ export default {
   height: 60px;
   @media only screen and (max-width: 767px) {
     height: 32px;
-    margin: 40px auto;
+    margin: 60px auto;
   }
 }
 
@@ -155,7 +181,6 @@ export default {
     display: block;
   }
   
-
   .feature-description {
     width: 520px;
     @media only screen and (max-width: 767px) {
@@ -166,16 +191,17 @@ export default {
       width: 100%;
     }
     h2 {
-      margin-top: 32px;
-      margin-bottom: 24px;
+      margin-top: 24px;
+      margin-bottom: 12px;
       font-size: 20px; 
     }
     p {
       margin: 0;
+      font-size: 14px;
     }
 
     &:nth-child(1) {
-      margin-bottom: 40px;
+      margin-bottom: 60px;
     }
   }
 }
