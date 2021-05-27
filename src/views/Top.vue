@@ -5,6 +5,7 @@
     </header>
     <div class="bg">
       <figure class="logoWrap"><img src="../assets/img_logo.png" alt=""></figure>
+      <h1 class="catchphrase">朝の準備を<br>かんたんに、正確に</h1>
     </div>
     <Loading v-if="loading"/>
   </div>
@@ -57,7 +58,23 @@ export default {
 .logoWrap {
   margin: 0;
   img {
+    display: block;
+    margin: 0 auto;
+    padding-top: 40px;
+    width: 280px;
+    @media only screen and (max-width: 767px) {
+      width: 120px;
+    }
     
+  }
+}
+
+.catchphrase {
+  font-size: 48px;
+  color: #333338;
+  text-align: center;
+  @media only screen and (max-width: 767px) {
+    font-size: 24px;
   }
 }
 </style>
