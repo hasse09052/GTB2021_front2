@@ -21,7 +21,13 @@
 </template>
 
 <script>
-
+export default {
+  created: function() {
+    if(this.$route.query.status === "1" && this.$route.query.token.length !== 0) {
+      this.$store.commit('setToken', this.$route.query.token);
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

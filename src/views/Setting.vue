@@ -1,7 +1,7 @@
 <template>
   <div class="setting">
     <header class="header">
-      <router-link to="/app" class="header__button" v-if="this.$store.state.user_name.length != 0">閉じる</router-link>
+      <router-link to="/app" class="header__button" v-if="this.$store.state.user_name.length !== 0">閉じる</router-link>
     </header>
     <div class="bg">
       <main class="container">
@@ -91,38 +91,31 @@ export default {
   },
   methods: {
     post: function() {
-      /*
-      axios
-        .get('http://160.251.43.28/api/user', {
-          headers: {
-            Authorization: `Bearer ${this.token}`,
-          },
-        })
-        .then(response => {
-          const name = response.data.user_name;
-          const image = response.data.avatar_url;
-          const token = response.data.api_token;
-          this.$router.push({name: 'App', params: {name: name, image: image, token: token}})
-        });
-      */
       this.loading = true;
       axios
         .post(
-          'http://118.27.2.127/api/user/region/' + this.region, {}, {
+          'https://gtb2021teamg.mydns.jp/api/user/region/' + this.region, {}, {
           headers: {
-            Authorization: `Bearer ${this.token}`,
+            Authorization: `Bearer ${this.$store.state.token}`,
           },
         })
         .then(response => {
-          const token = response.data.api_token;
+          //const token = response.data.api_token;
           const name = response.data.user_name;
           const url = response.data.avatar_url;
-          this.$store.commit('setToken', token);
+          //this.$store.commit('setToken', token);
           this.$store.commit('setName', name);
           this.$store.commit('setImageUrl', url);
           this.$router.push('app')
-          //this.$router.push({name: 'App', params: {name: name, image: image, token: token}})
+        })
+        .finally(() => {
+          this.loading = false;
         });
+    }
+  },
+  created: function() {
+    if(this.$store.state.token.length === 0) {
+      this.$router.push('/')
     }
   },
   components: {

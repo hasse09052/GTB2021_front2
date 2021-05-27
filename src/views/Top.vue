@@ -48,9 +48,12 @@ export default {
     login: function() {
       this.loading = true;
       axios
-        .get('http://118.27.2.127/api/login')
+        .get('https://gtb2021teamg.mydns.jp/api/login')
         .then(response => {
           location.href = response.data;
+        })
+        .finally(() => {
+          this.loading = false;
         });
     },
   },

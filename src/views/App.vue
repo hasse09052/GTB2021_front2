@@ -60,9 +60,11 @@ export default {
       }
     },
     getUserInfo: function() {
+      if(this.$store.state.user_name.length !== 0) { return }
+
       axios
         .get(
-          'http://118.27.2.127/api/user', {
+          'https://gtb2021teamg.mydns.jp/api/user', {
           headers: {
             Authorization: `Bearer ${this.$route.query.token}`,
           },
@@ -77,16 +79,20 @@ export default {
         });
     },
     getItemInfo: function() {
+      const token = this.$store.state.token.length !== 0 ? this.$store.state.token : this.$route.query.token;
+
       axios
         .get(
-          'http://118.27.2.127/api/item', {
+          'https://gtb2021teamg.mydns.jp/api/item', {
           headers: {
-            Authorization: `Bearer ${this.$route.query.token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then(response => {
           this.itemlist = response.data.items
           this.showlist = Array.from(this.itemlist);
+        })
+        .finally(() => {
           this.loading = false;
         });
     },
@@ -95,8 +101,14 @@ export default {
     if(this.$route.query.status === "0") {
       this.$store.commit('setToken', this.$route.query.token);
     }
-    this.getUserInfo();
-    this.getItemInfo();
+
+    if(this.$store.state.token.length === 0) {
+      this.$router.push('/');
+    }
+    else {
+      this.getUserInfo();
+      this.getItemInfo();
+    }
   },
   mounted: function() {
     this.showlist = this.itemlist
