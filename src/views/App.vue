@@ -60,6 +60,8 @@ export default {
       }
     },
     getUserInfo: function() {
+      if(this.$store.state.user_name.length !== 0) { return }
+
       axios
         .get(
           'https://gtb2021teamg.mydns.jp/api/user', {
@@ -77,11 +79,13 @@ export default {
         });
     },
     getItemInfo: function() {
+      const token = this.$store.state.token.length !== 0 ? this.$store.state.token : this.$route.query.token;
+
       axios
         .get(
           'https://gtb2021teamg.mydns.jp/api/item', {
           headers: {
-            Authorization: `Bearer ${this.$route.query.token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then(response => {

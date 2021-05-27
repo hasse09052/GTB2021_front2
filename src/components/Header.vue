@@ -14,20 +14,12 @@ import axios from 'axios';
 export default {
   data () {
     return {
-      loginURL: "",
     }
   },
   props: {
     name: String,
     image: String,
   },
-  mounted () {
-    axios
-      .get('http://118.27.2.127/api/login')
-      .then(response => {
-        this.loginURL = response;
-      });
-  }
 }
 </script>
 

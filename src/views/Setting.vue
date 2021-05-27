@@ -91,26 +91,12 @@ export default {
   },
   methods: {
     post: function() {
-      /*
-      axios
-        .get('http://160.251.43.28/api/user', {
-          headers: {
-            Authorization: `Bearer ${this.token}`,
-          },
-        })
-        .then(response => {
-          const name = response.data.user_name;
-          const image = response.data.avatar_url;
-          const token = response.data.api_token;
-          this.$router.push({name: 'App', params: {name: name, image: image, token: token}})
-        });
-      */
       this.loading = true;
       axios
         .post(
           'https://gtb2021teamg.mydns.jp/api/user/region/' + this.region, {}, {
           headers: {
-            Authorization: `Bearer ${this.token}`,
+            Authorization: `Bearer ${this.$store.state.token}`,
           },
         })
         .then(response => {
