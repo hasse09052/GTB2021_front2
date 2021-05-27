@@ -5,12 +5,25 @@
       <span class="circle" v-if="isLoading"><span class="ouro ouro2"><span class="left"><span class="anim"></span></span><span class="right"><span class="anim"></span></span></span></span>
     </div>
     <div class="card__footer">
-      <template v-if="type === 0">
-        <p class="card__optionTitle -purple">毎日通知</p>
-        <p class="card__optionText">紫外線が多い日に通知します</p>
-      </template>
       <template v-if="type === 1">
-        <p class="card__optionTitle -green">天気で通知</p>
+        <p class="card__optionTitle -purple">日用品</p>
+        <p class="card__optionText">ダミーテキスト</p>
+      </template>
+      <template v-if="type === 2">
+        <p class="card__optionTitle -purple">毎日通知</p>
+        <p class="card__optionText">ダミーテキスト</p>
+      </template>
+      <template v-if="type === 3">
+        <p class="card__optionTitle -green">降水確率で通知</p>
+      </template>
+      <template v-if="type === 4">
+        <p class="card__optionTitle -green">気温が高いと通知</p>
+      </template>
+      <template v-if="type === 5">
+        <p class="card__optionTitle -green">気温が低いと通知</p>
+      </template>
+      <template v-if="type === 6">
+        <p class="card__optionTitle -green">湿度が強いと通知</p>
       </template>
     </div>
   </li>
@@ -43,11 +56,12 @@ export default {
       }
     },
     postCheck: function() {
+      const token = this.$store.state.token.length !== 0 ? this.$store.state.token : this.$route.query.token;
       axios
         .post(
           'https://gtb2021teamg.mydns.jp/api/check/on/' + this.id, {}, {
           headers: {
-            Authorization: `Bearer ${this.$route.query.token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then(response => {
@@ -59,11 +73,12 @@ export default {
         });
     },
     postUncheck: function() {
+      const token = this.$store.state.token.length !== 0 ? this.$store.state.token : this.$route.query.token;
       axios
         .post(
           'https://gtb2021teamg.mydns.jp/api/check/off/' + this.id, {}, {
           headers: {
-            Authorization: `Bearer ${this.$route.query.token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then(response => {

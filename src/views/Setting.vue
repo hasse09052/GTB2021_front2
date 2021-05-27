@@ -84,7 +84,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      region: "沖縄",
+      region: "",
       token: this.$route.query.token,
       loading: false,
     }
@@ -106,7 +106,8 @@ export default {
           //this.$store.commit('setToken', token);
           this.$store.commit('setName', name);
           this.$store.commit('setImageUrl', url);
-          this.$router.push('app')
+          this.$store.commit('setRegion', this.region);
+          this.$router.push('app');
         })
         .finally(() => {
           this.loading = false;
@@ -115,8 +116,14 @@ export default {
   },
   created: function() {
     if(this.$store.state.token.length === 0) {
-      this.$router.push('/')
+      this.$router.push('/');
     }
+
+    this.region = this.$store.state.region.length !== 0 ? this.$store.state.region : "東京";
+    //console.log(this.$store.state.region.length);
+    // if(this.$store.state.region.length !== 0) {
+    //   this.region = this.$store.state.region;
+    // }
   },
   components: {
     Loading,

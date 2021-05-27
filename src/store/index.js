@@ -10,6 +10,7 @@ export default new Vuex.Store({
     token: "",
     user_name: "",
     image_url: "",
+    region: "",
   },
   mutations: {
     setToken(state, token) {
@@ -20,7 +21,10 @@ export default new Vuex.Store({
     },
     setImageUrl (state, url) {
       state.image_url = url
-    }
+    },
+    setRegion (state, region) {
+      state.region = region
+    },
   },
   actions: {
   },

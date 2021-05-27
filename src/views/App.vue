@@ -60,6 +60,7 @@ export default {
       }
     },
     getUserInfo: function() {
+      // ログイン済なら通信しない
       if(this.$store.state.user_name.length !== 0) { return }
 
       axios
@@ -73,9 +74,12 @@ export default {
           //const token = response.data.api_token;
           const name = response.data.user_name;
           const url = response.data.avatar_url;
+          const region = response.data.region_name;
+          console.log(response.data);
           //this.$store.commit('setToken', token);
           this.$store.commit('setName', name);
           this.$store.commit('setImageUrl', url);
+          this.$store.commit('setRegion', region);
         });
     },
     getItemInfo: function() {
