@@ -28,6 +28,7 @@
           <li class="imageList__imgWrap"><img src="../assets/img_step3.png" alt="朝7時にLINEでお知らせ！"></li>
         </ol>
       </div>
+      <button @click="login" class="header__button -SP">Googleでログイン</button>
     </div>
     <Loading v-if="loading"/>
   </div>
@@ -65,6 +66,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.bg {
+  @media only screen and (max-width: 767px) {
+    padding-bottom: 60px;
+  }
+}
+
 .header {
   justify-content: flex-end;
   &__button {
@@ -76,6 +83,13 @@ export default {
     }
     @media only screen and (max-width: 767px) {
       font-size: 16px;
+    }
+    &.-SP {
+      display: none;
+      @media only screen and (max-width: 767px) {
+        display: flex;
+        margin: 0 auto;
+      }
     }
   }
 }
@@ -161,7 +175,7 @@ export default {
     }
 
     &:nth-child(1) {
-     margin-bottom: 40px;
+      margin-bottom: 40px;
     }
   }
 }
@@ -174,6 +188,7 @@ export default {
   list-style: none;
   @media only screen and (max-width: 767px) {
     display: block;
+    padding: 0 0 60px 0;
     margin: 0 auto;
   }
 
