@@ -6,6 +6,16 @@
     <div class="bg">
       <figure class="logoWrap"><img src="../assets/img_logo.png" alt=""></figure>
       <h1 class="catchphrase">朝の準備を<br>かんたんに、正確に</h1>
+      <div class="container">
+        <div class="titleWrap">
+          <h1 class="title">使いかた</h1>
+        </div>
+        <ol class="imageList">
+          <li class="imageList__imgWrap"><img src="../assets/img_step1.png" alt="忘れがちな持ち物を登録"></li>
+          <li class="imageList__imgWrap"><img src="../assets/img_step2.png" alt="寝ているあいだに、明日必要なものをリストアップ"></li>
+          <li class="imageList__imgWrap"><img src="../assets/img_step3.png" alt="朝7時にLINEでお知らせ！"></li>
+        </ol>
+      </div>
     </div>
     <Loading v-if="loading"/>
   </div>
@@ -75,6 +85,51 @@ export default {
   text-align: center;
   @media only screen and (max-width: 767px) {
     font-size: 24px;
+  }
+}
+
+.container {
+  width: 1200px;
+  padding: 0;
+  @media only screen and (max-width: 767px) {
+    width: auto;
+  }
+  .title {
+    margin: 0 0 40px;
+    font-size: 36px;
+    text-align: center;
+    @media only screen and (max-width: 767px) {
+      margin: 0 0 16px;
+      font-size: 24px;
+    }
+  }
+}
+
+.imageList {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+
+  @media only screen and (max-width: 767px) {
+    display: block;
+  }
+
+  &__imgWrap {
+    flex: 0 1 378px;
+    border-radius: 20px;
+    box-shadow: 0 0 4px rgba($color: #333338, $alpha: 0.1);
+    &:nth-child(2) {
+      margin: 0 33px;
+      @media only screen and (max-width: 767px) {
+        margin: 0 0 40px;
+      }
+    }
+    @media only screen and (max-width: 767px) {
+      border-radius: 18px;
+      margin: 0 0 40px;
+    }
   }
 }
 </style>
