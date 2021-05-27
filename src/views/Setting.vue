@@ -1,7 +1,7 @@
 <template>
   <div class="setting">
     <header class="header">
-      <router-link to="/app" class="header__button" v-if="this.$route.query.status !== '1' ">閉じる</router-link>
+      <router-link to="/app" class="header__button" v-if="this.$store.state.user_name.length !== 0">閉じる</router-link>
     </header>
     <div class="bg">
       <main class="container">
@@ -100,14 +100,13 @@ export default {
           },
         })
         .then(response => {
-          const token = response.data.api_token;
+          //const token = response.data.api_token;
           const name = response.data.user_name;
           const url = response.data.avatar_url;
-          this.$store.commit('setToken', token);
+          //this.$store.commit('setToken', token);
           this.$store.commit('setName', name);
           this.$store.commit('setImageUrl', url);
           this.$router.push('app')
-          //this.$router.push({name: 'App', params: {name: name, image: image, token: token}})
         })
         .finally(() => {
           this.loading = false;
@@ -115,9 +114,6 @@ export default {
     }
   },
   created: function() {
-    if(this.$route.query.status === "1") {
-      this.$store.commit('setToken', this.$route.query.token);
-    }
     if(this.$store.state.token.length === 0) {
       this.$router.push('/')
     }
