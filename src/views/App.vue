@@ -101,8 +101,14 @@ export default {
     if(this.$route.query.status === "0") {
       this.$store.commit('setToken', this.$route.query.token);
     }
-    this.getUserInfo();
-    this.getItemInfo();
+
+    if(this.$store.state.token.length === 0) {
+      this.$router.push('/');
+    }
+    else {
+      this.getUserInfo();
+      this.getItemInfo();
+    }
   },
   mounted: function() {
     this.showlist = this.itemlist

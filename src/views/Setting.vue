@@ -1,7 +1,7 @@
 <template>
   <div class="setting">
     <header class="header">
-      <router-link to="/app" class="header__button" v-if="this.$store.state.user_name.length != 0">閉じる</router-link>
+      <router-link to="/app" class="header__button" v-if="this.$route.query.status !== '1' ">閉じる</router-link>
     </header>
     <div class="bg">
       <main class="container">
@@ -112,6 +112,14 @@ export default {
         .finally(() => {
           this.loading = false;
         });
+    }
+  },
+  created: function() {
+    if(this.$route.query.status === "1") {
+      this.$store.commit('setToken', this.$route.query.token);
+    }
+    if(this.$store.state.token.length === 0) {
+      this.$router.push('/')
     }
   },
   components: {
