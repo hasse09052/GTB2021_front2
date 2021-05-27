@@ -10,9 +10,9 @@
           <router-link to="/setting" class="linkButton">持ち物を登録する</router-link>
         </div>
         <ol class="imageList">
-          <li class="imageList__imgWrap"><img src="../assets/img_step1.png" alt=""></li>
-          <li class="imageList__imgWrap"><img src="../assets/img_step2.png" alt=""></li>
-          <li class="imageList__imgWrap"><img src="../assets/img_step3.png" alt=""></li>
+          <li class="imageList__imgWrap"><img src="../assets/img_step1.png" alt="忘れがちな持ち物を登録"></li>
+          <li class="imageList__imgWrap"><img src="../assets/img_step2.png" alt="寝ているあいだに、明日必要なものをリストアップ"></li>
+          <li class="imageList__imgWrap"><img src="../assets/img_step3.png" alt="朝7時にLINEでお知らせ！"></li>
         </ol>
         <router-link to="/setting" class="linkButton -SP">持ち物を登録する</router-link>
       </main>

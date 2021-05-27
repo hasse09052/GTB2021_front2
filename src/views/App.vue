@@ -4,16 +4,14 @@
     <div class="bg">
       <main class="container">
         <div class="searchWrap">
-          <input type="text" placeholder="検索">
-          <button class="searchWrap__button"></button>
+          <input type="text" placeholder="検索" v-model="search" @input="filter">
         </div>
 
         <ul class="list">
-          <Card title="日焼け止め"/>
-          <Card title="スマホ"/>
+          <Card v-for="item in showlist" :key="item" v-bind:title="item"/>
         </ul>
 
-        <p>{{this.$store.state.token}}</p>
+        <figure class="emptyImg" v-if="isEmpty"><img src="../assets/img_empty.png" alt="持ちものが見つかりませんでした"></figure>
 
       </main>
     </div>
@@ -29,9 +27,43 @@ import Loading from "../components/Loading";
 export default {
   data() {
     return {
+      search: "",
       loading: false,
+      itemlist: ["test", "test2", "日焼け止め", "スマホ"],
+      showlist: [],
+      isEmpty: false,
     }
   },
+  methods: {
+    filter: function() {
+      this.isEmpty = false
+      this.showlist = this.itemlist.filter( value => {
+        if(value.indexOf(this.search) === 0){
+          return value
+        }
+      });
+      
+      if(this.showlist.length === 0) {
+        this.isEmpty = true
+      }
+    }
+  },
+  mounted: function() {
+    this.showlist = this.itemlist
+  },
+  /*
+  watch: {
+    search: function() {
+      console.log(this.search)
+      // let tmp = this.itemlist.filter( function(value) {
+      //   if(value === this.search) {
+      //     return value
+      //   }
+      // });
+      // this.itemlist = tmp;
+    }
+  },
+  */
   components: {
     Header,
     Card,
@@ -42,9 +74,14 @@ export default {
 
 <style scoped lang="scss">
 .searchWrap {
+  margin: 0 0 48px;
   position: relative;
 
-  &__button {
+  @media only screen and (max-width: 767px) {
+    margin: 0 0 24px;
+  }
+
+  &::before {
     content: "";
     width: 32px;
     height: 32px;
@@ -55,11 +92,6 @@ export default {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
-    transition: 0.3s ease-out;
-    &:hover {
-      opacity: 0.7;
-      cursor: pointer;
-    }
     @media only screen and (max-width: 767px) {
       width: 20px;
       height: 20px;
@@ -87,7 +119,12 @@ export default {
 
 .list {
   padding: 0;
-  margin: 48px 0 0;
+  margin:  0;
   list-style: none;
+}
+
+.emptyImg {
+  padding: 0;
+  margin: 0 auto;
 }
 </style>
