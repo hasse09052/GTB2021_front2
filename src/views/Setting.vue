@@ -108,7 +108,7 @@ export default {
       this.loading = true;
       axios
         .post(
-          'http://118.27.2.127/api/user/region/' + this.region, {}, {
+          'https://gtb2021teamg.mydns.jp/api/user/region/' + this.region, {}, {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
@@ -122,6 +122,9 @@ export default {
           this.$store.commit('setImageUrl', url);
           this.$router.push('app')
           //this.$router.push({name: 'App', params: {name: name, image: image, token: token}})
+        })
+        .finally(() => {
+          this.loading = false;
         });
     }
   },

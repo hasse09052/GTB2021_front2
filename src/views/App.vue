@@ -62,7 +62,7 @@ export default {
     getUserInfo: function() {
       axios
         .get(
-          'http://118.27.2.127/api/user', {
+          'https://gtb2021teamg.mydns.jp/api/user', {
           headers: {
             Authorization: `Bearer ${this.$route.query.token}`,
           },
@@ -79,7 +79,7 @@ export default {
     getItemInfo: function() {
       axios
         .get(
-          'http://118.27.2.127/api/item', {
+          'https://gtb2021teamg.mydns.jp/api/item', {
           headers: {
             Authorization: `Bearer ${this.$route.query.token}`,
           },
@@ -87,6 +87,8 @@ export default {
         .then(response => {
           this.itemlist = response.data.items
           this.showlist = Array.from(this.itemlist);
+        })
+        .finally(() => {
           this.loading = false;
         });
     },
