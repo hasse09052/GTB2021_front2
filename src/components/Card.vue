@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -23,17 +25,49 @@ export default {
     }
   },
   props: {
+    id: Number,
     title: String,
     type: Number,
-    check: Number,
+    check: Boolean,
   },
   methods: {
     toggleCheck: function() {
-      this.isCheck = !this.isCheck
-    }
+      if(this.isCheck === false) {
+        this.postCheck();
+      }
+      else {
+        this.postUncheck();
+      }
+    },
+    postCheck: function() {
+      axios
+        .post(
+          'http://118.27.2.127/api/check/on/' + this.id, {}, {
+          headers: {
+            Authorization: `Bearer ${this.$route.query.token}`,
+          },
+        })
+        .then(response => {
+          this.isCheck = !this.isCheck
+          console.log("チェックを付けるのに成功")
+        });
+    },
+    postUncheck: function() {
+      axios
+        .post(
+          'http://118.27.2.127/api/check/off/' + this.id, {}, {
+          headers: {
+            Authorization: `Bearer ${this.$route.query.token}`,
+          },
+        })
+        .then(response => {
+          this.isCheck = !this.isCheck
+          console.log("チェックを外すのに成功")
+        });
+    },
   },
   created: function() {
-    if (this.check === 1) {
+    if (this.check) {
       this.isCheck = true
     }
   }

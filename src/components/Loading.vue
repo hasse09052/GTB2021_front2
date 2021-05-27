@@ -20,6 +20,9 @@
   top: 0;
   left: 0;
   transform: scale(2);
+  @media only screen and (max-width: 767px) {
+    transform: scale(1);
+  }
 }
 
 @-moz-keyframes gauge-loader {

@@ -1,7 +1,7 @@
 <template>
   <div class="setting">
     <header class="header">
-      <router-link to="/app" class="header__button">閉じる</router-link>
+      <router-link to="/app" class="header__button" v-if="this.$store.state.user_name.length != 0">閉じる</router-link>
     </header>
     <div class="bg">
       <main class="container">

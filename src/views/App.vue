@@ -12,14 +12,13 @@
         </div>
 
         <ul class="list">
-          <Card v-for="item in showlist" :key="item.id" v-bind:title="item.item_name" v-bind:type="item.notification_type_id" v-bind:check="item.default_check_flag"/>
+          <Card v-for="item in showlist"
+                :key="item.id"
+                v-bind:id="item.id"
+                v-bind:title="item.item_name"
+                v-bind:type="item.notification_type_id"
+                v-bind:check="'pivot' in item"/>
         </ul>
-
-        <!-- 
-        <transition-group  class="list" name="list" tag="ul">
-          <Card v-for="item in showlist" :key="item" v-bind:title="item"/>
-        </transition-group>
-        -->
 
         <transition>
           <figure class="emptyImg" v-if="isEmpty"><img src="../assets/img_empty.png" alt="持ちものが見つかりませんでした"></figure>
@@ -41,9 +40,6 @@ export default {
     return {
       search: "",
       loading: true,
-      //itemlist: ["test", "test2", "日焼け止め", "スマホ"],
-      //check_itemlist: [],
-      //nocheck_itemlist: [],
       itemlist: [],
       showlist: [],
       isEmpty: false,
@@ -89,11 +85,7 @@ export default {
           },
         })
         .then(response => {
-          console.log("アイテム取得完了");
-          console.log(response.data);
-          //this.check_itemlist = response.data.user_items;
-          //this.nocheck_itemlist = response.data.other;
-          this.itemlist = response.data.user_items.concat(response.data.other)
+          this.itemlist = response.data.items
           this.showlist = Array.from(this.itemlist);
           this.loading = false;
         });
@@ -101,7 +93,6 @@ export default {
   },
   created: function() {
     if(this.$route.query.status === "0") {
-      console.log("トークンセット");
       this.$store.commit('setToken', this.$route.query.token);
     }
     this.getUserInfo();
@@ -110,19 +101,6 @@ export default {
   mounted: function() {
     this.showlist = this.itemlist
   },
-  /*
-  watch: {
-    search: function() {
-      console.log(this.search)
-      // let tmp = this.itemlist.filter( function(value) {
-      //   if(value === this.search) {
-      //     return value
-      //   }
-      // });
-      // this.itemlist = tmp;
-    }
-  },
-  */
   components: {
     Header,
     Card,
@@ -203,14 +181,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100%;
-  
+  width: 100%;
+  margin: 48px 0 0;
   background: none;
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 50%;
   left: 0;
-  transform: scale(2);
+  transform: scale(1);
 }
 
 </style>
