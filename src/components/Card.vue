@@ -6,24 +6,26 @@
     </div>
     <div class="card__footer">
       <template v-if="type === 1">
-        <p class="card__optionTitle -purple">日用品</p>
-        <p class="card__optionText">ダミーテキスト</p>
+        <p class="card__optionTitle -brown">日用品</p>
       </template>
       <template v-if="type === 2">
-        <p class="card__optionTitle -purple">毎日通知</p>
-        <p class="card__optionText">ダミーテキスト</p>
+        <p class="card__optionTitle -green">毎日通知</p>
       </template>
       <template v-if="type === 3">
-        <p class="card__optionTitle -green">降水確率で通知</p>
+        <p class="card__optionTitle -lightBlue">降水確率で通知</p>
+        <p class="card__optionText">降水確率が60%以上で通知します</p>
       </template>
       <template v-if="type === 4">
-        <p class="card__optionTitle -green">気温が高いと通知</p>
+        <p class="card__optionTitle -red">気温が高いと通知</p>
+        <p class="card__optionText">最高気温が22℃以上で通知します</p>
       </template>
       <template v-if="type === 5">
-        <p class="card__optionTitle -green">気温が低いと通知</p>
+        <p class="card__optionTitle -blue">気温が低いと通知</p>
+        <p class="card__optionText">最高気温が15℃以下で通知します</p>
       </template>
       <template v-if="type === 6">
-        <p class="card__optionTitle -green">湿度が強いと通知</p>
+        <p class="card__optionTitle -purple">湿度が低いと通知</p>
+        <p class="card__optionText">湿度が30%以下で通知します</p>
       </template>
     </div>
   </li>
@@ -166,15 +168,29 @@ export default {
   }
 
   &__optionTitle {
+    flex: 0 0 auto;
     margin: 0 16px 0 0;
     font-weight: bolder;
 
+    &.-brown {
+      color: #905930;
+    }
     &.-green {
       color: #598051;
+    }
+    &.-lightBlue {
+      color: #3D9999;
+    }
+    &.-blue {
+      color: #304B90;
+    }
+    &.-red {
+      color: #9E4B50;
     }
     &.-purple {
       color: #7E559E;
     }
+
     @media only screen and (max-width: 767px) {
       font-size: 12px;
     }
